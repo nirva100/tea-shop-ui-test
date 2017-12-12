@@ -1,0 +1,4 @@
+h3{display:inline-block;}
+.filters{display:flex; justify-content: space-between; width: 100%;}
+.text-search{margin:0px 5px; height: 24px;}
+.type-search{margin:0px 5px; display: inline-block !important; width: initial !important;}

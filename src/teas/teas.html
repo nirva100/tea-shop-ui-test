@@ -1,3 +1,62 @@
 <div class="row" ng-controller="TeasCtrl as teas">
-
+    <div class="filters" >
+            <div class="seatch-row">
+                <h3>type to search for item :</h3>
+                <input class="text-search" type="text" ng-model="teasSearch.text">
+                <h3>or</h3>
+                <select class="form-control type-search"
+                        ng-model="teasSearch.type"
+                        ng-options="type for type in teas.teasTypes">
+                </select>
+            </div>
+            <div class="sort-row">
+                <h3>order by :</h3>
+                <button class="btn btn-default" ng-click="orderBy('name')">Name</button>
+                <button class="btn btn-default" ng-click="orderBy('price')">Price
+                    <span class="glyphicon glyphicon-{{teasOrder.glyphIcon}}"></span>
+                </button>
+            </div>
+            <div class="show-row">
+                <button class="btn btn-default" ng-click="togglePresentation()">
+                    <span class="glyphicon glyphicon-{{renderOption}}"></span></button>
+            </div>
+    </div>
+    <div class="card-columns" ng-show="showAsList">
+        <div class="card" ng-repeat="tea in teas.teas | teasFilter:teasSearch | orderBy:teasOrder.sortField:teasOrder.reverse">
+            <div class="card-header">
+                Price: {{tea.price}}
+                <i class="fa fa-usd"></i>
+            </div>
+            <img ng-if="tea.image" alt="{{tea.name}}" class="img-fluid" ng-src="{{tea.image}}">
+            <div class="card-block">
+                <h4 class="card-title">{{tea.name}}</h4>
+                <p class="card-text">{{tea.description}}</p>
+            </div>
+            <div class="card-block">
+                <a class="card-link" ng-href="/teas/{{tea.id}}">Product Page</a>
+                <a class="card-link" ng-href="{{tea.link}}">Details Source</a>
+                <ngcart-addtocart id="{{tea.id}}" data="tea" name="{{tea.name}}" price="{{tea.price}}" quantity="1" quantity-max="5"><i class="fa fa-cart-plus"></i> Add to Cart</ngcart-addtocart>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered" ng-show="!showAsList">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-row" ng-repeat="tea in teas.teas | teasFilter:teasSearch | orderBy:teasOrder.sortField:teasOrder.reverse">
+            <td><img src="{{tea.image}}" alt="" border=3 height=100 width=100></img></td>
+            <td>{{tea.name}}</td>
+            <td>{{tea.description}}</td>
+            <td style="text-align: center">{{tea.price}}</td>
+            <td><a class="table-link" ng-href="/teas/{{tea.id}}">Product Page</a></td>
+        </tr>
+        </tbody>
+    </table>
 </div>

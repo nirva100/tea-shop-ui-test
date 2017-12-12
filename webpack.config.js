@@ -172,6 +172,7 @@ module.exports = function makeWebpackConfig() {
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
+            Popper: 'popper.js',
             Tether: 'tether',
             'window.jQuery': 'jquery'
         })

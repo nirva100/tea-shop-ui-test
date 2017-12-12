@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rimraf dist && webpack --bail --progress --profile",
     "server": "webpack-dev-server --port=9999 --history-api-fallback --inline --progress",
-    "start": "npm run server"
+    "start": "npm run server --debug"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "jquery": "^3.2.1",
     "ngCart": "^1.0.0",
+    "popper.js": "^1.12.9",
     "restangular": "^1.6.1",
     "tether": "^1.4.0"
   },
